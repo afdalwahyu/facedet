@@ -40,8 +40,11 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
   $x = json_decode($x);
 
   $movies = count($x->movies);
-  $music = count($x->music);
+  $item['music'] = count($x->music);
   $television = count($x->television);
-  $favorite_teams = count($x->favorite_teams);
-  $mov_tv = $movies + $television;
+  $item['favorite_teams'] = count($x->favorite_teams);
+  $item['mov_tv'] = $movies + $television;
+
+  $maxs = array_keys($item, max($item));
+  echo $maxs[0];
 }]);
