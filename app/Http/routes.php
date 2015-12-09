@@ -35,15 +35,16 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
     exit;
   }
 
-  $x = $response->getGraphUser();
+  $x = json_decode($response->getGraphUser());
 
-  $x = json_decode($x);
 
-  $movies = count($x->movies);
-  $item['music'] = count($x->music);
-  $television = count($x->television);
-  $item['favorite_teams'] = count($x->favorite_teams);
+
+  //$movies = count($x->movies);
+  $movies = (isset($x->movies) ? count($x->movies) : 0);
+  $television = (isset($x->television) ? count($x->television) : 0);
   $item['mov_tv'] = $movies + $television;
+  $item['music'] = (isset($x->music) ? count($x->music) : 0);
+  $item['favorite_teams'] = (isset($x->favorite_teams) ? count($x->favorite_teams) : 0);
 
   $maxs = array_keys($item, max($item));
   echo $maxs[0];
