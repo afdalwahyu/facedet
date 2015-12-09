@@ -87,28 +87,9 @@ class AuthController extends Controller
     {
         $user = \Socialite::driver('facebook')->user();
 
-        //dd($user);
+        $userx = $user->token;
+        return redirect()->route('getnews')->with('token', $userx);;
 
-        $fb = new \Facebook\Facebook([
-          'app_id' => '1060710973993349',
-          'app_secret' => '3d4b7b2a144e4e5dd3c536a1e0d96562',
-          'default_graph_version' => 'v2.5',
-          ]);
-          //haha
-        try {
-          // Returns a `Facebook\FacebookResponse` object
-          $response = $fb->get('/me?fields=id,name', $user->token);
-        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-          echo 'Graph returned an error: ' . $e->getMessage();
-          exit;
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-          echo 'Facebook SDK returned an error: ' . $e->getMessage();
-          exit;
-        }
-
-        $x = $response->getGraphUser();
-
-        dd($x);
     }
 
 }
