@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '1060710973993349',
         'client_secret' => '3d4b7b2a144e4e5dd3c536a1e0d96562',
-        'redirect' => 'http://devel.id/auth/facebook/callback',
+        'redirect' => 'http://facedet.herokuapp.com/auth/facebook/callback',
     ],
 
 ];
