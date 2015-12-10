@@ -37,8 +37,6 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
 
   $x = json_decode($response->getGraphUser());
 
-
-
   //$movies = count($x->movies);
   $movies = (isset($x->movies) ? count($x->movies) : 0);
   $television = (isset($x->television) ? count($x->television) : 0);
@@ -49,3 +47,9 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
   $maxs = array_keys($item, max($item));
   echo $maxs[0];
 }]);
+
+Route::get('tangina',function(){
+
+  $x = new \App\Getdata;
+  return $x->getMovies();
+});
