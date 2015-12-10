@@ -23,24 +23,26 @@ class Getdata
 
   public function getMovies()
   {
-    $ur = "http://android.detik.com//api/newsfeed?compress=1&min=1&kanal=212&page=1";
+    $ur = "http://android.detik.com//api/newsfeed?compress=1&min=1&kanal=213&page=1";
     return self::wow($ur);
-
   }
 
   function getMusic()
   {
     $ur = "http://android.detik.com//api/newsfeed?compress=1&min=1&kanal=212&page=1";
+    return self::wow($ur);
   }
 
   function getSports()
   {
-    $ur = "http://android.detik.com//api/newsfeed?compress=1&min=1&kanal=212&page=1";
+    $ur = "http://android.detik.com//api/newsfeed?compress=1&min=1&kanal=69&page=1";
+    return self::wow($ur);
   }
 
-  function getData($ur)
+  function getData($data)
   {
-
+    $ur = 'android.detik.com/api/news_detail?url='.$data;
+    return self::wow($ur);
   }
 
 }

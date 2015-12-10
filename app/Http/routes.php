@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,10 +35,54 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
 
   $maxs = array_keys($item, max($item));
   echo $maxs[0];
+
+  switch ($maxs[0]) {
+    case 'mov_tv':
+      $x = new \App\Getdata;
+      $data = json_decode($x->getMovies());
+
+      return view('portal',['data' => $data]);
+      break;
+    case 'music':
+      $x = new \App\Getdata;
+      $data = json_decode($x->getMusic());
+
+      return view('portal',['data' => $data]);
+      break;
+    case 'favorite_teams':
+      $x = new \App\Getdata;
+      $data = json_decode($x->getSports());
+
+      return view('portal',['data' => $data]);
+      break;
+
+    default:
+      $x = new \App\Getdata;
+      $data = json_decode($x->getSports());
+
+      return view('portal',['data' => $data]);
+      break;
+  }
+
 }]);
 
 Route::get('tangina',function(){
 
   $x = new \App\Getdata;
-  return $x->getMovies();
+  $data = json_decode($x->getMovies());
+
+  return view('portal',['data' => $data]);
+
+});
+
+Route::get('baca/{x}',function($x)
+{
+  $data = base64_decode($x);
+
+  $x = new \App\Getdata;
+  $aw = json_decode($x->getData($data));
+
+  return view('baca',['aw' => $aw]);
+
+
 });
