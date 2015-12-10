@@ -34,7 +34,6 @@ Route::get('getnews',['as' => 'getnews','uses' => function(){
   $item['favorite_teams'] = (isset($x->favorite_teams) ? count($x->favorite_teams) : 0);
 
   $maxs = array_keys($item, max($item));
-  echo $maxs[0];
 
   switch ($maxs[0]) {
     case 'mov_tv':
